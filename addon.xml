@@ -13,12 +13,13 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
-    <language>no</language>
+    <language>nb</language>
     <summary lang="en">Watch Frikanalen Web TV</summary>
-    <summary lang="no">Se Frikanalen Nett-TV</summary>
+    <summary lang="nb">Se Frikanalen Nett-TV</summary>
     <description lang="en">Frikanalen Web TV gives you the opportunity to watch live TV as well as recordings of many shows.</description>
-    <description lang="no">Frikanalen Nett-TV gir deg muligheten til å se mange av NRKs programmer både direkte og i opptak.</description>
+    <description lang="nb">Frikanalen Nett-TV gir deg muligheten til å se mange av NRKs programmer både direkte og i opptak.</description>
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum></forum>
     <source>https://github.com/Frikanalen/kodi-frikanalen</source>
   </extension>
 </addon>

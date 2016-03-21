@@ -15,10 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# FIXME figure out how to write a Kodi plugin.
+streamurl = 'http://video.nuug.no/frikanalen.ogv'
 
-import routing
+import sys
+import xbmcgui
+import xbmcplugin
 
-if __name__ == '__main__':
-    plugin = routing.Plugin()
-    plugin.run()
+addon_handle = int(sys.argv[1])
+
+xbmcplugin.setContent(addon_handle, 'movies')
+
+li = xbmcgui.ListItem('Frikanalen Nett-TV', iconImage='DefaultVideo.png')
+xbmcplugin.addDirectoryItem(handle=addon_handle, streamurl=streamurl, listitem=li)
+
+xbmcplugin.endOfDirectory(addon_handle)
