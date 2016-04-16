@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 streamurl = 'http://video.nuug.no/frikanalen.ogv'
+streamurl = 'http://gemini.neuf.no:9094/fk_obe.ts'
 
 import sys
 import xbmcgui
@@ -29,3 +30,4 @@ li = xbmcgui.ListItem('Frikanalen Nett-TV', iconImage='DefaultVideo.png')
 xbmcplugin.addDirectoryItem(handle=addon_handle, streamurl=streamurl, listitem=li)
 
 xbmcplugin.endOfDirectory(addon_handle)
+
