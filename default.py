@@ -15,8 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-streamurl = 'http://video.nuug.no/frikanalen.ogv'
-streamurl = 'http://gemini.neuf.no:9094/fk_obe.ts'
+streamurl = 'http://video.nuug.no/frikanalen.webm'
 
 import sys
 import xbmcgui
