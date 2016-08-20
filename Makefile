@@ -8,3 +8,6 @@ dist:
 	cp $(FILES) plugin.video.frikanalen/
 	zip -r plugin.video.frikanalen-$(VERSION).zip plugin.video.frikanalen/
 	rm -r plugin.video.frikanalen
+
+clean:
+	rm *.zip
