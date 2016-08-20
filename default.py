@@ -26,7 +26,7 @@ addon_handle = int(sys.argv[1])
 xbmcplugin.setContent(addon_handle, 'movies')
 
 li = xbmcgui.ListItem('Frikanalen Nett-TV', iconImage='DefaultVideo.png')
-xbmcplugin.addDirectoryItem(handle=addon_handle, streamurl=streamurl, listitem=li)
+xbmcplugin.addDirectoryItem(handle=addon_handle, url=streamurl, listitem=li)
 
 xbmcplugin.endOfDirectory(addon_handle)
 
