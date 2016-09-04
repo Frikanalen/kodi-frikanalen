@@ -11,7 +11,7 @@ dist:
 	rm -r plugin.video.frikanalen
 
 prepare_release:
-	rm -r $(REPO_PLUGINS)/plugin.video.frikanalen
+	rm -rf $(REPO_PLUGINS)/plugin.video.frikanalen
 	mkdir $(REPO_PLUGINS)/plugin.video.frikanalen
 	cp $(FILES) $(REPO_PLUGINS)/plugin.video.frikanalen/
 
