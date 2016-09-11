@@ -27,6 +27,8 @@ xbmcplugin.setContent(addon_handle, 'movies')
 
 li = xbmcgui.ListItem('Frikanalen Nett-TV', iconImage='DefaultVideo.png')
 li.setProperty('IsPlayable', 'true')
+li.setInfo('videos', {'mediatype' : 'video'})
+
 xbmcplugin.addDirectoryItem(handle=addon_handle, url=streamurl, listitem=li)
 
 xbmcplugin.endOfDirectory(addon_handle)
