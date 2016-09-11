@@ -2,6 +2,8 @@ VERSION := $(shell grep '  version=' addon.xml |cut -d\" -f2)
 FILES = addon.xml default.py changelog.txt  icon.png    LICENSE.txt
 REPO_PLUGINS ?= ../repo-plugins
 RELEASE_BRANCH ?= jarvis
+TEST_PI_ADDRESS ?=192.168.0.20
+TEST_PI_USER ?= root
 
 all:
 
@@ -17,6 +19,9 @@ prepare_release:
 	rm -rf $(REPO_PLUGINS)/plugin.video.frikanalen
 	mkdir $(REPO_PLUGINS)/plugin.video.frikanalen
 	cp $(FILES) $(REPO_PLUGINS)/plugin.video.frikanalen/
+
+test_deploy: dist
+	scp plugin.video.frikanalen-*.zip $(TEST_PI_USER)@$(TEST_PI_ADDRESS):
 
 clean:
 	rm *.zip
