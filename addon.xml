@@ -20,5 +20,8 @@
     <forum></forum>
     <source>https://github.com/Frikanalen/kodi-frikanalen</source>
     <website>http://www.frikanalen.no/</website>
+    <news>v0.0.1  (2016-09-04)
+- First version of the Frikanalen Nett-TV plugin.
+    </news>
   </extension>
 </addon>
