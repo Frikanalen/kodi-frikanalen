@@ -25,7 +25,7 @@ addon_handle = int(sys.argv[1])
 
 xbmcplugin.setContent(addon_handle, 'videos')
 
-li = xbmcgui.ListItem('Frikanalen Nett-TV', iconImage='DefaultVideo.png')
+li = xbmcgui.ListItem('Live streaming', iconImage='DefaultVideo.png')
 li.setProperty('IsPlayable', 'true')
 li.setInfo('videos', {'mediatype' : 'video'})
 
