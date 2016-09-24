@@ -19,18 +19,21 @@ http://addons.kodi.tv/show/plugin.video.frikanalen/ .
 Release process
 ----------------
 
+We are currently targeting jarvis.
+
 The following is a step-by-step procedure for releasing a new version:
 
 0. Make sure you have cloned
    [repo-plugins](https://github.com/Frikanalen/repo-plugins) one level above in
    `../repo-plugins`.
-0. Checkout the correct branch you want to commit to in repo-plugins.
+0. Checkout the correct branch you want to commit to in repo-plugins (which is
+   jarvis, but you know that ;).
 0. Update the changelog.
 0. Run `make prepare_release` from kodi-frikanalen.
 0. Commit copied files in `../repo-plugins`.
 0. Open a pull request on the
-   [xbmc/repo-plugins](https://github.com/xbmc/repo-plugins) repository for
-   _correct branch_.
+   [xbmc/repo-plugins](https://github.com/xbmc/repo-plugins) repository for the
+   jarvis branch.
 0. Wait on the review to start.
 0. Address any code review issues.
 0. When merged upstream, create a tag for the version and push it out.
