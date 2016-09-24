@@ -5,7 +5,7 @@ RELEASE_BRANCH ?= jarvis
 TEST_PI_ADDRESS ?=192.168.0.20
 TEST_PI_USER ?= root
 
-all:
+all: dist
 
 dist:
 	mkdir -p plugin.video.frikanalen
