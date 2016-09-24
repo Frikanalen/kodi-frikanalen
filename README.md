@@ -12,3 +12,6 @@ http://kodi.wiki/view/Audio/Video_plugin_tutorial for inspiration.
 
 See http://kodi.wiki/view/Submitting_Add-ons to learn how to submit a
 plugin to the Kodi community repo.
+
+This add-on is available from the Kodi repository as
+http://addons.kodi.tv/show/plugin.video.frikanalen/ .
