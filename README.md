@@ -30,7 +30,7 @@ The following is a step-by-step procedure for releasing a new version:
 0. Commit copied files in `../repo-plugins`.
 0. Open a pull request on the
    [xbmc/repo-plugins](https://github.com/xbmc/repo-plugins) repository for
-   target _correct branch_.
+   _correct branch_.
 0. Wait on the review to start.
 0. Address any code review issues.
-0. When merged, create a tag for the version and push it out.
+0. When merged upstream, create a tag for the version and push it out.
