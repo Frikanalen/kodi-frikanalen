@@ -19,5 +19,6 @@
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     <forum></forum>
     <source>https://github.com/Frikanalen/kodi-frikanalen</source>
+    <website>http://www.frikanalen.no/</website>
   </extension>
 </addon>
