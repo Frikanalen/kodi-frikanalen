@@ -1,2 +1,5 @@
+[B]0.0.2[/B] (UNRELEASED)
+- Improve package description and language settings.
+- Add link to channel web site.
 [B]0.0.1[/B] (2016-09-04)
 - First version of the Frikanalen Nett-TV plugin.
