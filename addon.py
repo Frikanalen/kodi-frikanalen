@@ -20,13 +20,27 @@ streamurl = 'http://video.nuug.no/frikanalen.webm'
 import sys
 import xbmcgui
 import xbmcplugin
+import routing
 
 from xbmcplugin import addDirectoryItem
+from xbmcplugin import addDirectoryItems
 from xbmcplugin import endOfDirectory
 from xbmcgui import ListItem
 
-def run():
-    addon_handle = int(sys.argv[1])
+plugin = routing.Plugin()
+
+@plugin.route('/')
+def root():
+    items = [
+        (plugin.url_for(live), ListItem("Direkte"), True),
+        (plugin.url_for(schedule), ListItem("Sendeplan"), True),
+    ]
+    addDirectoryItems(plugin.handle, items)
+    endOfDirectory(plugin.handle)
+
+@plugin.route('/live')
+def live():
+    addon_handle = plugin.handle
 
     xbmcplugin.setContent(addon_handle, 'videos')
 
@@ -38,3 +52,9 @@ def run():
 
     endOfDirectory(addon_handle)
 
+@plugin.route('/schedule')
+def schedule():
+    raise Exception("to be implemented")
+
+def run():
+    plugin.run()
