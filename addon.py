@@ -15,12 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-streamurl = 'http://video.nuug.no/frikanalen.webm'
 
 import sys
 import xbmcgui
 import xbmcplugin
 import routing
+import frikanalen
 
 from xbmcplugin import addDirectoryItem
 from xbmcplugin import addDirectoryItems
@@ -48,7 +48,7 @@ def live():
     li.setProperty('IsPlayable', 'true')
     li.setInfo('videos', {'mediatype' : 'video'})
 
-    addDirectoryItem(handle=addon_handle, url=streamurl, listitem=li)
+    addDirectoryItem(handle=addon_handle, url=frikanalen.stream_url(), listitem=li)
 
     endOfDirectory(addon_handle)
 
