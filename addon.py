@@ -21,16 +21,20 @@ import sys
 import xbmcgui
 import xbmcplugin
 
+from xbmcplugin import addDirectoryItem
+from xbmcplugin import endOfDirectory
+from xbmcgui import ListItem
+
 def run():
     addon_handle = int(sys.argv[1])
 
     xbmcplugin.setContent(addon_handle, 'videos')
 
-    li = xbmcgui.ListItem('Live streaming', iconImage='DefaultVideo.png')
+    li = ListItem('Live streaming', iconImage='DefaultVideo.png')
     li.setProperty('IsPlayable', 'true')
     li.setInfo('videos', {'mediatype' : 'video'})
 
-    xbmcplugin.addDirectoryItem(handle=addon_handle, url=streamurl, listitem=li)
+    addDirectoryItem(handle=addon_handle, url=streamurl, listitem=li)
 
-    xbmcplugin.endOfDirectory(addon_handle)
+    endOfDirectory(addon_handle)
 
