@@ -21,15 +21,16 @@ import sys
 import xbmcgui
 import xbmcplugin
 
-addon_handle = int(sys.argv[1])
+def run():
+    addon_handle = int(sys.argv[1])
 
-xbmcplugin.setContent(addon_handle, 'videos')
+    xbmcplugin.setContent(addon_handle, 'videos')
 
-li = xbmcgui.ListItem('Live streaming', iconImage='DefaultVideo.png')
-li.setProperty('IsPlayable', 'true')
-li.setInfo('videos', {'mediatype' : 'video'})
+    li = xbmcgui.ListItem('Live streaming', iconImage='DefaultVideo.png')
+    li.setProperty('IsPlayable', 'true')
+    li.setInfo('videos', {'mediatype' : 'video'})
 
-xbmcplugin.addDirectoryItem(handle=addon_handle, url=streamurl, listitem=li)
+    xbmcplugin.addDirectoryItem(handle=addon_handle, url=streamurl, listitem=li)
 
-xbmcplugin.endOfDirectory(addon_handle)
+    xbmcplugin.endOfDirectory(addon_handle)
 

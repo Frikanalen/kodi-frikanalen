@@ -1,5 +1,5 @@
 VERSION := $(shell grep '  version=' addon.xml |cut -d\" -f2)
-FILES = addon.xml default.py changelog.txt  icon.png    LICENSE.txt
+FILES = addon.xml *.py changelog.txt  icon.png    LICENSE.txt
 REPO_PLUGINS ?= ../repo-plugins
 RELEASE_BRANCH ?= jarvis
 TEST_PI_ADDRESS ?=192.168.0.20
