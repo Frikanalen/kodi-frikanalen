@@ -27,5 +27,9 @@ prepare_release:
 test_deploy: dist
 	scp plugin.video.frikanalen-*.zip $(TEST_PI_USER)@$(TEST_PI_ADDRESS):
 
+local_deploy: dist
+	mv plugin.video.frikanalen-*.zip ~/Downloads/
+	kodi
+
 clean:
 	rm *.zip
