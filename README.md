@@ -23,9 +23,6 @@ We are currently targeting jarvis.
 
 The following is a step-by-step procedure for releasing a new version:
 
-0. Make sure you have cloned
-   [repo-plugins](https://github.com/Frikanalen/repo-plugins) one level above in
-   `../repo-plugins`.
 0. Update the changelog.
 0. Run `make prepare_release` from kodi-frikanalen.
 0. Commit copied files in `../repo-plugins`.
