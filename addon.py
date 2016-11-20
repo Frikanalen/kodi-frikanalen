@@ -44,7 +44,7 @@ def live():
 
     xbmcplugin.setContent(addon_handle, 'videos')
 
-    li = ListItem('Live streaming', iconImage='DefaultVideo.png')
+    li = ListItem('Frikanalen-sending', iconImage='DefaultVideo.png')
     li.setProperty('IsPlayable', 'true')
     li.setInfo('videos', {'mediatype' : 'video'})
 
