@@ -68,7 +68,7 @@ def schedule():
         li.setProperty('IsPlayable', 'false') #TODO: FIX
         info = {}
         info['mediatype'] = 'video'
-        # info['plot'] = ''
+        info['plot'] = video.header
         li.setInfo('video', info)
         addDirectoryItem(handle=addon_handle, url=frikanalen.stream_url(), listitem=li)
     endOfDirectory(plugin.handle)
