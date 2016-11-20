@@ -58,7 +58,20 @@ def live():
 
 @plugin.route('/schedule')
 def schedule():
-    raise Exception("to be implemented")
+    today_program = frikanalen.today_programs()
+    addon_handle = plugin.handle
+    xbmcplugin.setContent(addon_handle, 'videos')
+
+    for s in today_program:
+        video = s.video
+        li = ListItem(video.name, iconImage='DefaultVideo.png')
+        li.setProperty('IsPlayable', 'false') #TODO: FIX
+        info = {}
+        info['mediatype'] = 'video'
+        # info['plot'] = ''
+        li.setInfo('video', info)
+        addDirectoryItem(handle=addon_handle, url=frikanalen.stream_url(), listitem=li)
+    endOfDirectory(plugin.handle)
 
 def run():
     plugin.run()
