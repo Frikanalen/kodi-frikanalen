@@ -46,7 +46,11 @@ def live():
 
     li = ListItem('Frikanalen-sending', iconImage='DefaultVideo.png')
     li.setProperty('IsPlayable', 'true')
-    li.setInfo('videos', {'mediatype' : 'video'})
+
+    info = {}
+    info['mediatype'] = 'video'
+    # info['plot'] = ''
+    li.setInfo('video', info)
 
     addDirectoryItem(handle=addon_handle, url=frikanalen.stream_url(), listitem=li)
 
