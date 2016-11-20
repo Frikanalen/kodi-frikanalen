@@ -18,6 +18,7 @@ class Video():
     header = None
     name = None
     #ogv_url = None
+    #large_thumbnail_url = None
     # NB: some fields have been skipped
 
     def __init__(self, **kwargs):
@@ -31,6 +32,7 @@ class Video():
                 header = r['header'],
                 name = r['name'],
                 #ogv_url = r['ogv_url'],
+                #large_thumbnail_url = r['large_thumbnail_url'],
         )
 
 class ScheduleItem():
