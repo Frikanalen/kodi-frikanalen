@@ -64,13 +64,13 @@ def schedule():
 
     for s in today_program:
         video = s.video
-        li = ListItem(video.name, iconImage='DefaultVideo.png')
-        li.setProperty('IsPlayable', 'false') #TODO: FIX
+        li = ListItem(video.name, iconImage=video.large_thumbnail_url)
+        li.setProperty('IsPlayable', 'true')
         info = {}
         info['mediatype'] = 'video'
         info['plot'] = video.header
         li.setInfo('video', info)
-        addDirectoryItem(handle=addon_handle, url=frikanalen.stream_url(), listitem=li)
+        addDirectoryItem(handle=addon_handle, url=video.ogv_url, listitem=li)
     endOfDirectory(plugin.handle)
 
 def run():
