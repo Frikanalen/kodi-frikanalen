@@ -36,7 +36,7 @@ class Video():
         )
 
 class ScheduleItem():
-    # TODO: Review all properties, espcially starttime
+    # TODO: Review all properties
     default_name = None
     video_id = None
     video = None
@@ -55,7 +55,7 @@ class ScheduleItem():
                 video_id = r['video_id'],
                 video = Video.from_response(r['video']),
                 schedulereason = r['schedulereason'],
-                starttime = r['starttime'],
+                starttime = datetime.datetime.strptime(r['starttime'], "%Y-%m-%dT%H:%M:%SZ"),
                 duration = r['duration']
         )
 
