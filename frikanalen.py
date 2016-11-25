@@ -72,3 +72,18 @@ def today_programs():
     schedule_response = _get('/scheduleitems/?date=today')
     items = [ScheduleItem.from_response(item) for item in schedule_response['results']]
     return [item for item in items if is_today(item.starttime) == True]
+
+def whats_on():
+    now = datetime.datetime.now()
+    program = today_programs()
+    program.sort()
+
+    for item in program:
+        t = item.starttime
+        if t.hour == now.hour:
+            print "> [{:d}:{:02d}] {:s} {:s}".format(t.hour, t.minute, item.video.name, item.duration)
+        else:
+            print "[{:d}:{:02d}] {:s} {:s}".format(t.hour, t.minute, item.video.name, item.duration)
+    return ""
+
+whats_on()
