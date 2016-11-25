@@ -65,6 +65,10 @@ def _get(path):
     r.raise_for_status()
     return r.json()
 
+def is_today(t):
+    return t.day == datetime.datetime.today().day
+
 def today_programs():
     schedule_response = _get('/scheduleitems/?date=today')
-    return [ScheduleItem.from_response(item) for item in schedule_response['results']]
+    items = [ScheduleItem.from_response(item) for item in schedule_response['results']]
+    return [item for item in items if is_today(item.starttime) == True]
