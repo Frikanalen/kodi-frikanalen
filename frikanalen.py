@@ -85,5 +85,3 @@ def whats_on():
         else:
             print "[{:d}:{:02d}] {:s} {:s}".format(t.hour, t.minute, item.video.name, item.duration)
     return ""
-
-whats_on()
