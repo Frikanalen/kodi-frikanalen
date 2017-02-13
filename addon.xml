@@ -4,7 +4,7 @@
        version="0.0.1"
        provider-name="frikanalen">
   <requires>
-    <import addon="xbmc.python" version="2.24.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.routing" version="0.1.0"/>
     <import addon="script.module.requests" version="1.0.4"/>
   </requires>
