@@ -33,3 +33,6 @@ local_deploy: dist
 
 clean:
 	rm *.zip
+
+show:
+	tail -f ~/.kodi/temp/kodi.log
