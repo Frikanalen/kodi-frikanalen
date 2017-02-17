@@ -1,4 +1,3 @@
-
 from __future__ import unicode_literals
 
 import datetime
@@ -8,10 +7,12 @@ session = Session()
 session.headers['User-Agent'] = 'kodi.tv'
 session.headers['app-version-android'] = '999'
 
+
 def stream_url():
     return 'http://video.nuug.no/frikanalen.webm'
-        
-class Video():
+
+
+class Video:
     id = None
     description = None
     duration = None
@@ -19,6 +20,7 @@ class Video():
     name = None
     ogv_url = None
     large_thumbnail_url = None
+
     # NB: some fields have been skipped
 
     def __init__(self, **kwargs):
@@ -27,15 +29,16 @@ class Video():
     @staticmethod
     def from_response(r):
         return Video(
-                description = r['description'],
-                duration = r['duration'],
-                header = r['header'],
-                name = r['name'],
-                ogv_url = r['ogv_url'],
-                large_thumbnail_url = r['large_thumbnail_url'],
+            description=r['description'],
+            duration=r['duration'],
+            header=r['header'],
+            name=r['name'],
+            ogv_url=r['ogv_url'],
+            large_thumbnail_url=r['large_thumbnail_url'],
         )
 
-class ScheduleItem():
+
+class ScheduleItem:
     # TODO: Review all properties
     default_name = None
     video_id = None
@@ -43,20 +46,21 @@ class ScheduleItem():
     schedulereason = None
     starttime = None
     duration = None
+
     # NB: some fields have been skipped
-    
+
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
 
     @staticmethod
     def from_response(r):
         return ScheduleItem(
-                default_name = r['default_name'],
-                video_id = r['video_id'],
-                video = Video.from_response(r['video']),
-                schedulereason = r['schedulereason'],
-                starttime = datetime.datetime.strptime(r['starttime'], "%Y-%m-%dT%H:%M:%SZ"),
-                duration = r['duration']
+            default_name=r['default_name'],
+            video_id=r['video_id'],
+            video=Video.from_response(r['video']),
+            schedulereason=r['schedulereason'],
+            starttime=datetime.datetime.strptime(r['starttime'], "%Y-%m-%dT%H:%M:%SZ"),
+            duration=r['duration']
         )
 
 
@@ -65,13 +69,16 @@ def _get(path):
     r.raise_for_status()
     return r.json()
 
+
 def is_today(t):
     return t.day == datetime.datetime.today().day
+
 
 def today_programs():
     schedule_response = _get('/scheduleitems/?date=today')
     items = [ScheduleItem.from_response(item) for item in schedule_response['results']]
     return [item for item in items if is_today(item.starttime) == True]
+
 
 def whats_on():
     now = datetime.datetime.now()

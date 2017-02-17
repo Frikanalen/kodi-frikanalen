@@ -16,16 +16,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import sys
-import xbmcgui
-import xbmcplugin
 import routing
-import frikanalen
-
+import xbmcplugin
+from xbmcgui import ListItem
 from xbmcplugin import addDirectoryItem
 from xbmcplugin import addDirectoryItems
 from xbmcplugin import endOfDirectory
-from xbmcgui import ListItem
+
+import frikanalen
 
 plugin = routing.Plugin()
 
@@ -47,8 +45,7 @@ def live():
     li = ListItem('Frikanalen-sending', iconImage='DefaultVideo.png')
     li.setProperty('IsPlayable', 'true')
 
-    info = {}
-    info['mediatype'] = 'video'
+    info = {'mediatype': 'video'}
     # info['plot'] = ''
     li.setInfo('video', info)
 
@@ -66,9 +63,7 @@ def schedule():
         video = s.video
         li = ListItem(video.name, iconImage=video.large_thumbnail_url)
         li.setProperty('IsPlayable', 'true')
-        info = {}
-        info['mediatype'] = 'video'
-        info['plot'] = video.header
+        info = {'mediatype': 'video', 'plot': video.header}
         li.setInfo('video', info)
         addDirectoryItem(handle=addon_handle, url=video.ogv_url, listitem=li)
     endOfDirectory(plugin.handle)
