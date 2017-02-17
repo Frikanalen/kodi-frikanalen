@@ -63,7 +63,6 @@ class ScheduleItem:
             duration=r['duration']
         )
 
-
 def _get(path):
     r = session.get("http://beta.frikanalen.no/api/" + path)
     r.raise_for_status()
@@ -82,8 +81,7 @@ def today_programs():
 
 def whats_on():
     now = datetime.datetime.now()
-    program = today_programs()
-    program.sort()
+    program = sorted(today_programs())
 
     for item in program:
         t = item.starttime
