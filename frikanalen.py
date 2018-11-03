@@ -12,6 +12,10 @@ def stream_url():
     return 'http://video.nuug.no/frikanalen.webm'
 
 
+def stream_url_hd():
+    return 'http://video.nuug.no/frikanalen-hd.webm'
+
+
 class Video:
     id = None
     description = None

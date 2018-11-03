@@ -42,7 +42,7 @@ def live():
 
     xbmcplugin.setContent(addon_handle, 'videos')
 
-    li = ListItem('Frikanalen-sending', iconImage='DefaultVideo.png')
+    li = ListItem('Frikanalen-sending (SD)', iconImage='DefaultVideo.png')
     li.setProperty('IsPlayable', 'true')
 
     info = {'mediatype': 'video'}
@@ -50,6 +50,15 @@ def live():
     li.setInfo('video', info)
 
     addDirectoryItem(handle=addon_handle, url=frikanalen.stream_url(), listitem=li)
+
+    li = ListItem('Frikanalen-sending (HD)', iconImage='DefaultVideo.png')
+    li.setProperty('IsPlayable', 'true')
+
+    info = {'mediatype': 'video'}
+    # info['plot'] = ''
+    li.setInfo('video', info)
+
+    addDirectoryItem(handle=addon_handle, url=frikanalen.stream_url_hd(), listitem=li)
 
     endOfDirectory(addon_handle)
 
