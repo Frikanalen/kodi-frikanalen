@@ -2,7 +2,7 @@ VERSION := $(shell grep '  version=' addon.xml |cut -d\" -f2)
 FILES = addon.xml *.py changelog.txt  icon.png    LICENSE.txt
 REPO_PLUGINS ?= ../repo-plugins
 REPO_PLUGINS_REPOSITORY ?= https://github.com/Frikanalen/repo-plugins
-RELEASE_BRANCH ?= jarvis
+RELEASE_BRANCH ?= krypton
 TEST_PI_ADDRESS ?=192.168.0.20
 TEST_PI_USER ?= root
 
