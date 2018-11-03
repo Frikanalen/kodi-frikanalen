@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.frikanalen"
        name="Frikanalen Nett-TV"
-       version="0.0.1"
+       version="0.0.2"
        provider-name="frikanalen">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -22,7 +22,13 @@
     <forum></forum>
     <source>https://github.com/Frikanalen/kodi-frikanalen</source>
     <website>http://www.frikanalen.no/</website>
-    <news>v0.0.1  (2016-09-12)
+    <news>v0.0.2  (2018-11-03)
+- Improve package description and language settings.
+- Add link to channel web site.
+- Add link to HD stream.
+- Restructure menu, provide live and schedule sections.
+
+v0.0.1  (2016-09-12)
 - First version of the Frikanalen Nett-TV plugin.
     </news>
   </extension>
