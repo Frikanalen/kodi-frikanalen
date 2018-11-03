@@ -68,7 +68,7 @@ class ScheduleItem:
         )
 
 def _get(path):
-    r = session.get("http://beta.frikanalen.no/api/" + path)
+    r = session.get("https://frikanalen.no/api/" + path)
     r.raise_for_status()
     return r.json()
 
@@ -78,7 +78,7 @@ def is_today(t):
 
 
 def today_programs():
-    schedule_response = _get('/scheduleitems/?date=today')
+    schedule_response = _get('scheduleitems/?date=today')
     items = [ScheduleItem.from_response(item) for item in schedule_response['results']]
     return [item for item in items if is_today(item.starttime) == True]
 
