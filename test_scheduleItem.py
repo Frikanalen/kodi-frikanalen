@@ -8,8 +8,8 @@ class TestScheduleItem(TestCase):
         progs = sorted(frikanalen.today_programs())
         for p in progs:
             if p.video is not None:
-                print str(p.video.name.encode('utf-8'))
-            print str(p.starttime)
+                print(str(p.video.name.encode('utf-8')))
+            print(str(p.starttime))
 
         assert len(progs) > 0
         frikanalen.whats_on()

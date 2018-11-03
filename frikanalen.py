@@ -90,7 +90,7 @@ def whats_on():
     for item in program:
         t = item.starttime
         if t.hour == now.hour:
-            print "> [{:d}:{:02d}] {:s} {:s}".format(t.hour, t.minute, item.video.name, item.duration)
+            print("> [{:d}:{:02d}] {:s} {:s}".format(t.hour, t.minute, item.video.name, item.duration))
         else:
-            print "[{:d}:{:02d}] {:s} {:s}".format(t.hour, t.minute, item.video.name, item.duration)
+            print("[{:d}:{:02d}] {:s} {:s}".format(t.hour, t.minute, item.video.name, item.duration))
     return ""
