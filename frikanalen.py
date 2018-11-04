@@ -77,12 +77,21 @@ class ScheduleItem:
 
     @staticmethod
     def from_response(r):
+        # Workaround for fractional seconds in the output
+        if 'starttime' in r:
+            if '.' in r['starttime']:
+                starttime=datetime.datetime.strptime(r['starttime'], "%Y-%m-%dT%H:%M:
+            else:
+                starttime=datetime.datetime.strptime(r['starttime'], "%Y-%m-%dT%H:%M:
+        else:
+            starttime=None
+
         return ScheduleItem(
             default_name=r['default_name'],
             video_id=r['video_id'],
             video=Video.from_response(r['video']),
             schedulereason=r['schedulereason'],
-            starttime=datetime.datetime.strptime(r['starttime'], "%Y-%m-%dT%H:%M:%SZ"),
+            starttime=starttime,
             duration=r['duration']
         )
 
