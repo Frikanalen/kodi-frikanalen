@@ -76,7 +76,7 @@ def schedule():
         info = {
             'mediatype': 'video',
             'plot': video.header,
-            'duration': frikanalen.duration2sec(video.duration),
+            'duration': video.duration,
             'studio': video.organization,
         }
         li.setInfo('video', info)

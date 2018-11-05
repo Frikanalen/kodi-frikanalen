@@ -55,7 +55,7 @@ class Video:
     def from_response(r):
         return Video(
             description=r['description'],
-            duration=r['duration'],
+            duration=duration2sec(r['duration']),
             header=r['header'],
             name=r['name'],
             ogv_url=r['ogv_url'],
@@ -96,7 +96,7 @@ class ScheduleItem:
             video=Video.from_response(r['video']),
             schedulereason=r['schedulereason'],
             starttime=starttime,
-            duration=r['duration']
+            duration=duration2sec(r['duration']),
         )
 
 def _get(path):
