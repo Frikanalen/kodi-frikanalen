@@ -77,6 +77,7 @@ def schedule():
             'mediatype': 'video',
             'plot': video.header,
             'duration': frikanalen.duration2sec(video.duration),
+            'studio': video.organization,
         }
         li.setInfo('video', info)
         addDirectoryItem(handle=addon_handle, url=video.ogv_url, listitem=li)

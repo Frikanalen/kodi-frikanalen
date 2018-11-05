@@ -43,6 +43,8 @@ class Video:
     name = None
     ogv_url = None
     large_thumbnail_url = None
+    organization = None
+    categories = []
 
     # NB: some fields have been skipped
 
@@ -58,6 +60,8 @@ class Video:
             name=r['name'],
             ogv_url=r['ogv_url'],
             large_thumbnail_url=r['large_thumbnail_url'],
+            organization=r['organization'],
+            categories=r['categories'],
         )
 
 
