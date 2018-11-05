@@ -122,3 +122,14 @@ def whats_on():
         else:
             print("[{:d}:{:02d}] {:s} {:s}".format(t.hour, t.minute, item.video.name, item.duration))
     return ""
+
+def duration2sec(duration):
+    """Convert duration on format H:M:S.frac to seconds"""
+    p = duration.split(':')
+    d = 0
+    m = 1
+    for part in p[::-1]:
+        print(part)
+        d = d + float(part) * m
+        m = m * 60
+    return d

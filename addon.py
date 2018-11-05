@@ -72,7 +72,12 @@ def schedule():
         video = s.video
         li = ListItem(video.name, iconImage=video.large_thumbnail_url)
         li.setProperty('IsPlayable', 'true')
-        info = {'mediatype': 'video', 'plot': video.header}
+        # See https://mirrors.kodi.tv/docs/python-docs/16.x-jarvis/xbmcgui.html#ListItem
+        info = {
+            'mediatype': 'video',
+            'plot': video.header,
+            'duration': frikanalen.duration2sec(video.duration),
+        }
         li.setInfo('video', info)
         addDirectoryItem(handle=addon_handle, url=video.ogv_url, listitem=li)
     endOfDirectory(plugin.handle)
