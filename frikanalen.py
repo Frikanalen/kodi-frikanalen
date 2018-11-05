@@ -81,12 +81,8 @@ class ScheduleItem:
 
     @staticmethod
     def from_response(r):
-        # Workaround for fractional seconds in the output
         if 'starttime' in r:
-            if '.' in r['starttime']:
-                starttime=datetime.datetime.strptime(r['starttime'], "%Y-%m-%dT%H:%M:%S.%fZ")
-            else:
-                starttime=datetime.datetime.strptime(r['starttime'], "%Y-%m-%dT%H:%M:%SZ")
+            starttime = iso2datetime(r['starttime'])
         else:
             starttime=None
 
@@ -126,6 +122,13 @@ def whats_on():
         else:
             print("[{:d}:{:02d}] {:s} {:s}".format(t.hour, t.minute, item.video.name, item.duration))
     return ""
+
+def iso2datetime(datestr):
+    # Workaround for fractional seconds in the output
+    if '.' in datestr:
+        return datetime.datetime.strptime(datestr, "%Y-%m-%dT%H:%M:%S.%fZ")
+    else:
+        return datetime.datetime.strptime(datestr, "%Y-%m-%dT%H:%M:%SZ")
 
 def duration2sec(duration):
     """Convert duration on format H:M:S.frac to seconds"""
