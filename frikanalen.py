@@ -80,9 +80,9 @@ class ScheduleItem:
         # Workaround for fractional seconds in the output
         if 'starttime' in r:
             if '.' in r['starttime']:
-                starttime=datetime.datetime.strptime(r['starttime'], "%Y-%m-%dT%H:%M:%S.%fZ"),
+                starttime=datetime.datetime.strptime(r['starttime'], "%Y-%m-%dT%H:%M:%S.%fZ")
             else:
-                starttime=datetime.datetime.strptime(r['starttime'], "%Y-%m-%dT%H:%M:%SZ"),
+                starttime=datetime.datetime.strptime(r['starttime'], "%Y-%m-%dT%H:%M:%SZ")
         else:
             starttime=None
 
