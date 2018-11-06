@@ -54,6 +54,10 @@ class Video:
 
     @staticmethod
     def from_response(r):
+        if 'header' in r and r['header'] is not None:
+            r['header'] = r['header'] + "\n\nID #%s" % r['id']
+        else:
+            r['header'] = "ID #%s" % r['id']
         return Video(
             description=r['description'],
             duration=duration2sec(r['duration']),
