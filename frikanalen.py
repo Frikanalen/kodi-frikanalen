@@ -21,6 +21,7 @@ from __future__ import unicode_literals
 
 import datetime
 from requests import Session
+import urllib
 
 session = Session()
 session.headers['User-Agent'] = 'kodi.tv'
@@ -111,7 +112,7 @@ def categories():
 
 
 def in_category(category):
-    category = category.replace(' ', '+') # FIXME use urlencode
+    category = urllib.quote_plus(category)
     category_response = _get('videos/?categories__name__icontains=%s&has_tono_records=false' % category)
     videos= [Video.from_response(item) for item in category_response['results']]
     return videos
