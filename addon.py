@@ -20,6 +20,7 @@ import routing
 import urllib
 import xbmc
 import xbmcplugin
+from xbmcaddon import Addon
 from xbmcgui import ListItem
 from xbmcplugin import addDirectoryItem
 from xbmcplugin import addDirectoryItems
@@ -29,13 +30,29 @@ import frikanalen
 
 plugin = routing.Plugin()
 
+# fake gettext style translation using kodi approach with IDs
+def _(msg):
+    map = {
+        "Direkte":                    30001,
+        "Sendeplan":                  30002,
+        "Kategorier":                 30003,
+        "Søk":                        30004,
+        "Frikanalen akkurat nå (SD)": 30005,
+        "Frikanalen akkurat nå (HD)": 30006,
+    }
+    if msg in map:
+        return Addon().getLocalizedString(map[msg])
+    else:
+        return msg
+
+
 @plugin.route('/')
 def root():
     items = [
-        (plugin.url_for(live), ListItem("Direkte"), True),
-        (plugin.url_for(schedule), ListItem("Sendeplan"), True),
-        (plugin.url_for(categories), ListItem("Kategorier"), True),
-        (plugin.url_for(search), ListItem("Søk"), True),
+        (plugin.url_for(live), ListItem(_("Direkte")), True),
+        (plugin.url_for(schedule), ListItem(_("Sendeplan")), True),
+        (plugin.url_for(categories), ListItem(_("Kategorier")), True),
+        (plugin.url_for(search), ListItem(_("Søk")), True),
     ]
     addDirectoryItems(plugin.handle, items)
     endOfDirectory(plugin.handle)
@@ -44,7 +61,7 @@ def root():
 def live():
     xbmcplugin.setContent(plugin.handle, 'videos')
 
-    li = ListItem('Frikanalen akkurat nå (SD)', iconImage='DefaultVideo.png')
+    li = ListItem(_('Frikanalen akkurat nå (SD)'), iconImage='DefaultVideo.png')
     li.setProperty('IsPlayable', 'true')
 
     info = {'mediatype': 'video'}
@@ -53,7 +70,7 @@ def live():
 
     addDirectoryItem(handle=plugin.handle, url=frikanalen.stream_url(), listitem=li)
 
-    li = ListItem('Frikanalen akkurat nå (HD)', iconImage='DefaultVideo.png')
+    li = ListItem(_('Frikanalen akkurat nå (HD)'), iconImage='DefaultVideo.png')
     li.setProperty('IsPlayable', 'true')
 
     info = {'mediatype': 'video'}
@@ -108,7 +125,7 @@ def categories():
 @plugin.route('/search')
 def search():
     keyboard = xbmc.Keyboard()
-    keyboard.setHeading("Søk")
+    keyboard.setHeading(_("Søk"))
     keyboard.doModal()
     query = keyboard.getText()
     if query:
