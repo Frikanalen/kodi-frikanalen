@@ -142,10 +142,20 @@ def whats_on():
 
 def iso2datetime(datestr):
     # Workaround for fractional seconds in the output
-    if '.' in datestr:
-        return datetime.datetime.strptime(datestr, "%Y-%m-%dT%H:%M:%S.%fZ")
+    if '+' in datestr:
+        # FIXME this is a horrid way to handle timezones, simply throwing it away.
+        datestr = datestr.split('+')[0]
+        if '.' in datestr:
+            return datetime.datetime.strptime(datestr, "%Y-%m-%dT%H:%M:%S.%f")
+        else:
+            return datetime.datetime.strptime(datestr, "%Y-%m-%dT%H:%M:%S")
     else:
-        return datetime.datetime.strptime(datestr, "%Y-%m-%dT%H:%M:%SZ")
+        if '.' in datestr:
+            return datetime.datetime.strptime(datestr, "%Y-%m-%dT%H:%M:%S.%fZ")
+        else:
+            print("datestr=", datestr)
+            return datetime.datetime.strptime(datestr, "%Y-%m-%dT%H:%M:%SZ")
+
 
 def duration2sec(duration):
     """Convert duration on format H:M:S.frac to seconds"""
