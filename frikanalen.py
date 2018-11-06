@@ -136,7 +136,6 @@ def duration2sec(duration):
     d = 0
     m = 1
     for part in p[::-1]:
-        print(part)
         d = d + float(part) * m
         m = m * 60
     return d
