@@ -17,6 +17,7 @@
 
 
 import routing
+import urllib
 import xbmcplugin
 from xbmcgui import ListItem
 from xbmcplugin import addDirectoryItem
@@ -32,6 +33,7 @@ def root():
     items = [
         (plugin.url_for(live), ListItem("Direkte"), True),
         (plugin.url_for(schedule), ListItem("Sendeplan"), True),
+        (plugin.url_for(categories), ListItem("Kategorier"), True),
     ]
     addDirectoryItems(plugin.handle, items)
     endOfDirectory(plugin.handle)
@@ -62,14 +64,10 @@ def live():
 
     endOfDirectory(addon_handle)
 
-@plugin.route('/schedule')
-def schedule():
-    today_program = frikanalen.today_programs()
-    addon_handle = plugin.handle
+def video_list(addon_handle, videos):
     xbmcplugin.setContent(addon_handle, 'videos')
 
-    for s in today_program:
-        video = s.video
+    for video in videos:
         li = ListItem(video.name, iconImage=video.large_thumbnail_url)
         li.setProperty('IsPlayable', 'true')
         # See https://mirrors.kodi.tv/docs/python-docs/16.x-jarvis/xbmcgui.html#ListItem
@@ -82,6 +80,33 @@ def schedule():
         li.setInfo('video', info)
         addDirectoryItem(handle=addon_handle, url=video.ogv_url, listitem=li)
     endOfDirectory(plugin.handle)
+
+
+@plugin.route('/schedule')
+def schedule():
+    today_program = frikanalen.today_programs()
+    addon_handle = plugin.handle
+    video_list(addon_handle, [s.video for s in today_program])
+
+
+@plugin.route('/category/<category>')
+def category(category):
+    category = urllib.unquote_plus(category)
+    videos_in_category = frikanalen.in_category(category)
+    addon_handle = plugin.handle
+    video_list(addon_handle, videos_in_category)
+
+
+@plugin.route('/category')
+def categories():
+    categories = frikanalen.categories()
+    addon_handle = plugin.handle
+    xbmcplugin.setContent(addon_handle, 'videos')
+    items = [ (plugin.url_for(category, urllib.quote_plus(c)),  ListItem(c), True)
+              for c in categories]
+    addDirectoryItems(plugin.handle, items)
+    endOfDirectory(plugin.handle)
+
 
 def run():
     plugin.run()
