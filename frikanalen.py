@@ -112,7 +112,7 @@ def categories():
 
 def in_category(category):
     category = category.replace(' ', '+') # FIXME use urlencode
-    category_response = _get('videos/?categories__name__icontains=%s' % category)
+    category_response = _get('videos/?categories__name__icontains=%s&has_tono_records=false' % category)
     videos= [Video.from_response(item) for item in category_response['results']]
     return videos
 
