@@ -40,5 +40,16 @@ class TestScheduleItem(unittest.TestCase):
             videos = frikanalen.in_category(category)
             assert 0 < len(videos)
 
+
+    def test_iso_dates(self):
+        examples = (
+            '2017-04-06T09:11:27+0100',
+            '2017-04-06T09:11:27.469588+0100',
+            '2017-04-06T09:11:27Z',
+            '2017-04-06T09:11:27.469588Z',
+        )
+        for d in examples:
+            conv = frikanalen.iso2datetime(d)
+
 if __name__ == '__main__':
     unittest.main()
