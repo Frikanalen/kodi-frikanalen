@@ -17,11 +17,10 @@
 
 
 import frikanalen
+import unittest
 
-from unittest import TestCase
 
-
-class TestScheduleItem(TestCase):
+class TestScheduleItem(unittest.TestCase):
     def test_from_response(self):
         progs = sorted(frikanalen.today_programs())
         for p in progs:
@@ -32,3 +31,5 @@ class TestScheduleItem(TestCase):
         assert len(progs) > 0
         frikanalen.whats_on()
 
+if __name__ == '__main__':
+    unittest.main()
