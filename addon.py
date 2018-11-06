@@ -42,9 +42,7 @@ def root():
 
 @plugin.route('/live')
 def live():
-    addon_handle = plugin.handle
-
-    xbmcplugin.setContent(addon_handle, 'videos')
+    xbmcplugin.setContent(plugin.handle, 'videos')
 
     li = ListItem('Frikanalen-sending (SD)', iconImage='DefaultVideo.png')
     li.setProperty('IsPlayable', 'true')
@@ -53,7 +51,7 @@ def live():
     # info['plot'] = ''
     li.setInfo('video', info)
 
-    addDirectoryItem(handle=addon_handle, url=frikanalen.stream_url(), listitem=li)
+    addDirectoryItem(handle=plugin.handle, url=frikanalen.stream_url(), listitem=li)
 
     li = ListItem('Frikanalen-sending (HD)', iconImage='DefaultVideo.png')
     li.setProperty('IsPlayable', 'true')
@@ -62,9 +60,9 @@ def live():
     # info['plot'] = ''
     li.setInfo('video', info)
 
-    addDirectoryItem(handle=addon_handle, url=frikanalen.stream_url_hd(), listitem=li)
+    addDirectoryItem(handle=plugin.handle, url=frikanalen.stream_url_hd(), listitem=li)
 
-    endOfDirectory(addon_handle)
+    endOfDirectory(plugin.handle)
 
 def video_list(addon_handle, videos):
     xbmcplugin.setContent(addon_handle, 'videos')
@@ -81,29 +79,26 @@ def video_list(addon_handle, videos):
         }
         li.setInfo('video', info)
         addDirectoryItem(handle=addon_handle, url=video.ogv_url, listitem=li)
-    endOfDirectory(plugin.handle)
+    endOfDirectory(addon_handle)
 
 
 @plugin.route('/schedule')
 def schedule():
     today_program = frikanalen.today_programs()
-    addon_handle = plugin.handle
-    video_list(addon_handle, [s.video for s in today_program])
+    video_list(plugin.handle, [s.video for s in today_program])
 
 
 @plugin.route('/category/<category>')
 def category(category):
     category = urllib.unquote_plus(category)
     videos_in_category = frikanalen.in_category(category)
-    addon_handle = plugin.handle
-    video_list(addon_handle, videos_in_category)
+    video_list(plugin.handle, videos_in_category)
 
 
 @plugin.route('/category')
 def categories():
     categories = frikanalen.categories()
-    addon_handle = plugin.handle
-    xbmcplugin.setContent(addon_handle, 'videos')
+    xbmcplugin.setContent(plugin.handle, 'videos')
     items = [ (plugin.url_for(category, urllib.quote_plus(c)),  ListItem(c), True)
               for c in categories]
     addDirectoryItems(plugin.handle, items)
