@@ -117,7 +117,7 @@ def categories():
 
 def in_category(category):
     category = urllib.quote_plus(category)
-    category_response = _get('videos/?categories__name__icontains=%s&has_tono_records=false' % category)
+    category_response = _get('videos/?categories__name__icontains=%s&has_tono_records=false&proper_import=true&publish_on_web=true' % category)
     videos= [Video.from_response(item) for item in category_response['results']]
     return videos
 
