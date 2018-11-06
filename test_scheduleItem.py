@@ -32,5 +32,13 @@ class TestScheduleItem(unittest.TestCase):
         assert len(progs) > 0
         frikanalen.whats_on()
 
+    def test_category_listing(self):
+        categories = frikanalen.categories()
+        assert 0 < len(categories)
+        for category in categories:
+            print("Looking up cateogry %s" % category)
+            videos = frikanalen.in_category(category)
+            assert 0 < len(videos)
+
 if __name__ == '__main__':
     unittest.main()

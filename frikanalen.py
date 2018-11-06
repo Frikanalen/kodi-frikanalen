@@ -105,6 +105,18 @@ def is_today(t):
     return t.day == datetime.datetime.today().day
 
 
+def categories():
+    categories_response = _get('categories/')
+    return [item['name'] for item in categories_response['results']]
+
+
+def in_category(category):
+    category = category.replace(' ', '+') # FIXME use urlencode
+    category_response = _get('videos/?categories__name__icontains=%s' % category)
+    videos= [Video.from_response(item) for item in category_response['results']]
+    return videos
+
+
 def today_programs():
     schedule_response = _get('scheduleitems/?date=today')
     items = [ScheduleItem.from_response(item) for item in schedule_response['results']]
