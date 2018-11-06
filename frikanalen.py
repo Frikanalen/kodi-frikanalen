@@ -110,6 +110,13 @@ def is_today(t):
     return t.day == datetime.datetime.today().day
 
 
+def videosearch(query):
+    query= urllib.quote_plus(query)
+    search_response = _get('videos/?has_tono_records=false&proper_import=true&publish_on_web=true&q=%s' % query)
+    videos= [Video.from_response(item) for item in search_response['results']]
+    return videos
+
+
 def categories():
     categories_response = _get('categories/')
     return [item['name'] for item in categories_response['results']]

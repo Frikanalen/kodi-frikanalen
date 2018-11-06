@@ -18,6 +18,7 @@
 
 import routing
 import urllib
+import xbmc
 import xbmcplugin
 from xbmcgui import ListItem
 from xbmcplugin import addDirectoryItem
@@ -34,6 +35,7 @@ def root():
         (plugin.url_for(live), ListItem("Direkte"), True),
         (plugin.url_for(schedule), ListItem("Sendeplan"), True),
         (plugin.url_for(categories), ListItem("Kategorier"), True),
+        (plugin.url_for(search), ListItem("Søk"), True),
     ]
     addDirectoryItems(plugin.handle, items)
     endOfDirectory(plugin.handle)
@@ -106,6 +108,17 @@ def categories():
               for c in categories]
     addDirectoryItems(plugin.handle, items)
     endOfDirectory(plugin.handle)
+
+
+@plugin.route('/search')
+def search():
+    keyboard = xbmc.Keyboard()
+    keyboard.setHeading("Søk")
+    keyboard.doModal()
+    query = keyboard.getText()
+    if query:
+        items = frikanalen.videosearch(query.decode('utf-8'))
+        video_list(plugin.handle, items)
 
 
 def run():
