@@ -19,7 +19,8 @@ http://addons.kodi.tv/show/plugin.video.frikanalen/ .
 Release process
 ----------------
 
-We are currently targeting jarvis.
+We are currently targeting jarvis.  This make the add-on available on
+Kodi instances running version jarvis or newer.
 
 The following is a step-by-step procedure for releasing a new version:
 
