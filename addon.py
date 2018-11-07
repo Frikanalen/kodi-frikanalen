@@ -61,7 +61,8 @@ def root():
 def live():
     xbmcplugin.setContent(plugin.handle, 'videos')
 
-    li = ListItem(_('Frikanalen akkurat nå (SD)'), iconImage='DefaultVideo.png')
+    li = ListItem(_('Frikanalen akkurat nå (SD)'))
+    li.setArt({'icon':'DefaultVideo.png'})
     li.setProperty('IsPlayable', 'true')
 
     info = {'mediatype': 'video'}
@@ -70,7 +71,8 @@ def live():
 
     addDirectoryItem(handle=plugin.handle, url=frikanalen.stream_url(), listitem=li)
 
-    li = ListItem(_('Frikanalen akkurat nå (HD)'), iconImage='DefaultVideo.png')
+    li = ListItem(_('Frikanalen akkurat nå (HD)'))
+    li.setArt({'icon':'DefaultVideo.png'})
     li.setProperty('IsPlayable', 'true')
 
     info = {'mediatype': 'video'}
@@ -85,7 +87,8 @@ def video_list(addon_handle, videos):
     xbmcplugin.setContent(addon_handle, 'videos')
 
     for video in videos:
-        li = ListItem(video.name, iconImage=video.large_thumbnail_url)
+        li = ListItem(video.name)
+        li.setArt({'icon':video.large_thumbnail_url})
         li.setProperty('IsPlayable', 'true')
         # See https://mirrors.kodi.tv/docs/python-docs/16.x-jarvis/xbmcgui.html#ListItem
         info = {
