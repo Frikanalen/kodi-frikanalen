@@ -37,5 +37,5 @@ msgid "Frikanalen right now (SD)"
 msgstr ""
 
 msgctxt "#30006"
-msgid "Frikanalen right now (SD)"
+msgid "Frikanalen right now (HD)"
 msgstr ""
