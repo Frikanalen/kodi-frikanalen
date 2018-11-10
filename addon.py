@@ -14,7 +14,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+import datetime
 
 import routing
 import urllib
@@ -61,12 +61,15 @@ def root():
 def live():
     xbmcplugin.setContent(plugin.handle, 'videos')
 
+    whats_on = frikanalen.whats_on(datetime.datetime.now(), frikanalen.today_programs())
+
     li = ListItem(_('Frikanalen akkurat nå (SD)'))
     li.setArt({'icon':'DefaultVideo.png'})
     li.setProperty('IsPlayable', 'true')
 
     info = {'mediatype': 'video'}
-    # info['plot'] = ''
+    if whats_on and whats_on.video and whats_on.video.header:
+        info['plot'] = whats_on.video.header
     li.setInfo('video', info)
 
     addDirectoryItem(handle=plugin.handle, url=frikanalen.stream_url(), listitem=li)
@@ -76,7 +79,8 @@ def live():
     li.setProperty('IsPlayable', 'true')
 
     info = {'mediatype': 'video'}
-    # info['plot'] = ''
+    if whats_on and whats_on.video and whats_on.video.header:
+        info['plot'] = whats_on.video.header
     li.setInfo('video', info)
 
     addDirectoryItem(handle=plugin.handle, url=frikanalen.stream_url_hd(), listitem=li)

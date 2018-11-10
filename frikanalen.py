@@ -135,17 +135,15 @@ def today_programs():
     return [item for item in items if is_today(item.starttime) == True]
 
 
-def whats_on():
-    now = datetime.datetime.now()
-    program = sorted(today_programs())
+def whats_on(current_time, schedule_items):
+    for item in schedule_items:
+        if current_time.replace(tzinfo=None) == item.starttime.replace(tzinfo=None):
+            return item
+        end = item.starttime + datetime.timedelta(seconds=item.duration)
+        if item.starttime.replace(tzinfo=None) < current_time.replace(tzinfo=None) < end.replace(tzinfo=None):
+            return item
+    return None
 
-    for item in program:
-        t = item.starttime
-        if t.hour == now.hour:
-            print("> [{:d}:{:02d}] {:s} {:f}".format(t.hour, t.minute, item.video.name, item.duration))
-        else:
-            print("[{:d}:{:02d}] {:s} {:f}".format(t.hour, t.minute, item.video.name, item.duration))
-    return ""
 
 def iso2datetime(datestr):
     # Workaround for fractional seconds in the output

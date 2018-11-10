@@ -15,7 +15,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+import datetime
 
 import frikanalen
 import unittest
@@ -49,7 +49,30 @@ class TestScheduleItem(unittest.TestCase):
             '2017-04-06T09:11:27.469588Z',
         )
         for d in examples:
-            conv = frikanalen.iso2datetime(d)
+            conv = datetime.datetime.fromtimestamp(dateutil.parser.parse(d)).strftime('%c')
+
+    def test_whats_on(self):
+        schedule_mockup = [
+            frikanalen.Video(starttime=frikanalen.iso2datetime("2018-11-12T00:00:00Z"), duration=frikanalen.duration2sec("00:35:58.880000")),
+            frikanalen.Video(starttime=frikanalen.iso2datetime("2018-11-12T00:37:00Z"), duration=frikanalen.duration2sec("00:18:04.370000")),
+        ]
+        # First check that if the start time is same as one of the videos we get a good guess
+        now = frikanalen.iso2datetime('2018-11-12T00:00:00Z')
+        self.assertNotEqual(frikanalen.whats_on(now, schedule_mockup), None)
+
+        # Check five minutes after stream started, we should still get a good guess
+        now = frikanalen.iso2datetime('2018-11-12T00:05:00Z')
+        self.assertNotEqual(frikanalen.whats_on(now, schedule_mockup), None)
+
+        # Prevent invalid guess
+        now = frikanalen.iso2datetime('2018-11-19T00:00:00Z')
+        self.assertEqual(frikanalen.whats_on(now, schedule_mockup), None)
+
+        # Commented out below, but let's you run the test directly against API more suited for a integration test
+        whats_on = frikanalen.whats_on(datetime.datetime.now(), frikanalen.today_programs())
+        self.assertNotEqual(whats_on, None)
+        print(whats_on.starttime, whats_on.duration, whats_on.video.header)
+
 
 if __name__ == '__main__':
     unittest.main()
